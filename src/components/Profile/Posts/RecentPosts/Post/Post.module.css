@@ -1,0 +1,18 @@
+.item {
+  margin: 35px 0;
+  display: flex;
+  column-gap: 10px;
+}
+
+.avatar {
+  max-width: 50px;
+  border-radius: 50%;
+}
+
+.content{
+  width: 100%;
+  background-color: rgb(122, 120, 98);
+  min-height: 20px;
+}
+
+

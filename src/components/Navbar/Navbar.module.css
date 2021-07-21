@@ -1,0 +1,23 @@
+.nav {
+  grid-area: nav;
+  background-color: rgb(28, 81, 151);
+  max-height: 510px;
+}
+
+.list{
+    padding: 10px;
+}
+
+.item {
+    margin: 15px;
+    font-size: 23px;
+}
+
+.link {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.link.active{
+  color: #a39c30;
+}
