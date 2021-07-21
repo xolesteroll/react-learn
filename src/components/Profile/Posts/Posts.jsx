@@ -1,4 +1,4 @@
-
+import React from 'react';
 import NewPost from "./NewPost/NewPost";
 import classes from "./Posts.module.css";
 import RecentPosts from "./RecentPosts/RecentPosts";
