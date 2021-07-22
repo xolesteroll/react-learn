@@ -3,6 +3,7 @@
     background-color: rgb(28, 81, 151);
     max-height: 510px;
     height: 510px;
+    position: relative;
 }
 
 .list {

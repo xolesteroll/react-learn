@@ -1,0 +1,21 @@
+.sidebar {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(100%);
+    width: 100%;
+    background-color: rgb(28, 81, 151);
+    padding: 10px;
+}
+
+.sidebarInner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.title {
+    color: #ffffff;
+    text-align: center;
+}
+

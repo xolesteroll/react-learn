@@ -8,8 +8,8 @@ const Dialogs = (props) => {
       <div className={classes.dialogs}>
           <h2 className={classes.title}>Your Messages</h2>
           <div className={classes.dialogsInner}>
-              <Chats chats={props.chats}/>
-              <MessageBox messages={props.messages} id="2"/>
+              <Chats chats={props.state.chats}/>
+              <MessageBox messages={props.state.messages} id="1"/>
           </div>
       </div>
 
