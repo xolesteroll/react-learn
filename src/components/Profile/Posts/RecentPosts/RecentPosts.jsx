@@ -2,17 +2,17 @@ import React from 'react';
 import Post from "./Post/Post";
 import classes from "./RecentPosts.module.css";
 
-const RecentPosts = () => {
-  return (
+const RecentPosts = (props) => {
+
+    let postsElements = props.posts.map(el => <Post key={el.id} message={el.message} likeCount={el.likeCount}/>)
+
+    return (
         <div className={classes.recent}>
-          <h3 className={classes.title}>Recent posts</h3>
-          <Post message="First Post" likeCount="17"/>
-          <Post message="Second Post" likeCount="66"/>
-          <Post message="Third Post" likeCount="3"/>
-          <Post message="Forth Post" likeCount="88"/>
-          <Post message="Fifth Post" likeCount="99"/>
+
+            <h3 className={classes.title}>Recent posts</h3>
+            {postsElements}
         </div>
-  );
+    );
 };
 
 export default RecentPosts;

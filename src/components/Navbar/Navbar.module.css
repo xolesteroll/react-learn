@@ -14,9 +14,15 @@
     font-size: 23px;
 }
 
+.item:last-child {
+    margin-top: 50px;
+}
+
 .link {
+    display: inline-block;
     color: #ffffff;
     text-decoration: none;
+    width: 100%;
 }
 
 .link.active {

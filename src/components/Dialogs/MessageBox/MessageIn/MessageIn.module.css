@@ -1,0 +1,27 @@
+.message {
+    padding: 5px 10px;
+    margin: 20px 0;
+    width: fit-content;
+    background-color: #ffffff;
+    border-radius: 6px;
+    position: relative;
+    font-size: 25px;
+}
+
+.leftTail {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 20px solid #ffffff;
+    position: absolute;
+    top: 65%;
+    left: -5px;
+    transform: rotate(
+            60deg
+    );
+}
+
+
+
+

@@ -1,5 +1,16 @@
 .chat {
+  display: block;
+  text-decoration: none;
+  color: #000000;
   padding: 10px;
+  border-bottom: 1px solid #cccccc;
 }
+
+.chat.active {
+  background-color: #a39c30;
+  -webkit-box-shadow: inset 0px 0px 15px 0px #000000;
+  box-shadow: inset 0px 0px 15px 0px #000000;
+}
+
 
 

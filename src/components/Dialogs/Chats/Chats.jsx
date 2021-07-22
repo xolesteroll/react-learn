@@ -3,15 +3,14 @@ import classes from "./Chats.module.css";
 import Chat from "./Chat/Chat";
 
 const Chats = (props) => {
-  return (
+
+    let chatsElements = props.chats.map(el => <Chat key={el.id} name={el.name} id={el.id}/>)
+
+    return (
         <div className={classes.chats}>
-            <Chat message="Chat 1" />
-            <Chat message="Chat 2" />
-            <Chat message="Chat 3" />
-            <Chat message="Chat 4" />
-            <Chat message="Chat 5" />
+            {chatsElements}
         </div>
-  );
+    );
 };
 
 export default Chats;
