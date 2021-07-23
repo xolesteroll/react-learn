@@ -177,17 +177,29 @@ let state = {
                 imageUrl: 'https://pbs.twimg.com/profile_images/515757105140084736/rHu9s_8B_reasonably_small.jpeg'
             },
             {
-                id: 1,
+                id: 2,
                 name: 'Denis',
                 imageUrl: 'https://pbs.twimg.com/profile_images/515757105140084736/rHu9s_8B_reasonably_small.jpeg'
             },
             {
-                id: 1,
+                id: 3,
                 name: 'Artem',
                 imageUrl: 'https://pbs.twimg.com/profile_images/515757105140084736/rHu9s_8B_reasonably_small.jpeg'
             },
         ]
     }
 }
+
+export let addPost = (text) => {
+    let newPost = {
+        id: 5,
+        message: text,
+        likeCount: 0
+    }
+    console.log(state.profilePage.posts)
+    state.profilePage.posts.push(newPost)
+}
+
+
 
 export default state
