@@ -2,20 +2,20 @@ import React from 'react';
 import classes from "./NewMessage.module.css";
 
 const NewMessage = (props) => {
+    let newMessageElement = React.createRef()
 
-    let newPostElement = React.createRef()
-
-    let addPost = () => {
-        let text = newPostElement.current.value
-        alert(text);
-    }
+    let addMessage = () => {
+        let text = newMessageElement.current.value
+        props.sendMessage(text)
+        newMessageElement.current.value = ''
+    };
 
     return (
         <div className={classes.new}>
-            <textarea ref={newPostElement} defaultValue="" className={classes.text}/>
+            <textarea ref={newMessageElement} defaultValue="" className={classes.text}/>
             <button
                 className={classes.button}
-                onClick={addPost}
+                onClick={addMessage}
             >{props.buttonText}</button>
         </div>
   );

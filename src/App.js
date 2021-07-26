@@ -13,13 +13,14 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
 const App = (props) => {
+
     return (
         <Router>
             <div className="app-wrapper">
                 <Header/>
                 <Navbar state={props.appState.sidebar.friends}/>
                 <div className="app-wrapper-content">
-                    <Route path="/dialogs" render={() => <Dialogs state={props.appState.dialogsPage}/>}/>
+                    <Route path="/dialogs" render={() => <Dialogs state={props.appState.dialogsPage} sendMessage={props.sendMessage}/>}/>
                     <Route path="/profile" render={() => <Profile state={props.appState.profilePage} addPost={props.addPost}/>}/>
                     <Route path="/news" render={() => <News />}/>
                     <Route path="/music" render={() => <Music />}/>

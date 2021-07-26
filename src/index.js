@@ -1,17 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import state, {addPost} from './redux/state';
+import {rerenderEntireTree} from "./redux/render";
+import state, {addPost, sendMessage} from "./redux/state";
 
 
+rerenderEntireTree(state, addPost, sendMessage);
 
-ReactDOM.render(
-    <React.StrictMode>
-        <App appState={state} addPost={addPost}/>
-    </React.StrictMode>,
-    document.getElementById('root')
-);
 
 reportWebVitals();

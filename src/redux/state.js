@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "./render";
+
 let state = {
     profilePage: {
         posts: [
@@ -125,12 +127,12 @@ let state = {
                     messageOut: false
                 },
                 {
-                    id: 7,
+                    id: 6,
                     message: "Ok",
                     messageOut: false
                 },
                 {
-                    id: 9,
+                    id: 7,
                     message: "Bye",
                     messageOut: true
                 },
@@ -152,17 +154,17 @@ let state = {
                     messageOut: false
                 },
                 {
-                    id: 7,
+                    id: 4,
                     message: "Ok",
                     messageOut: false
                 },
                 {
-                    id: 8,
+                    id: 5,
                     message: "Ok",
                     messageOut: true
                 },
                 {
-                    id: 9,
+                    id: 6,
                     message: "Bye",
                     messageOut: true
                 },
@@ -192,12 +194,25 @@ let state = {
 
 export let addPost = (text) => {
     let newPost = {
-        id: 5,
+        id: state.profilePage.posts.length + 1,
         message: text,
         likeCount: 0
     }
     console.log(state.profilePage.posts)
-    state.profilePage.posts.push(newPost)
+    state.profilePage.posts.unshift(newPost)
+    rerenderEntireTree(state, addPost, sendMessage)
+}
+
+export let sendMessage = (text) => {
+    let newMessage = {
+        id: state.dialogsPage.messages[2].length + 1,
+        message: text,
+        messageOut: true
+    }
+
+    state.dialogsPage.messages[2].push(newMessage)
+    console.log(state.dialogsPage.messages[2])
+    rerenderEntireTree(state, addPost, sendMessage)
 }
 
 

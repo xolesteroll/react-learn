@@ -8,7 +8,7 @@ const NewPost = (props) => {
 
     return (
         <div className={classes.new}>
-            <textarea ref={newPostElement} defaultValue="" className={classes.text}/>
+            <textarea ref={newPostElement} defaultValue="" value="it kamasutra" className={classes.text}/>
             <button
                 className={classes.button}
                 onClick={() => {
