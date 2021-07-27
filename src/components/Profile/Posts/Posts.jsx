@@ -8,7 +8,7 @@ const Posts = (props) => {
   return (
       <div className={classes.posts}>
         <h3 className={classes.title}>My Posts</h3>
-        <NewPost buttonText="Add Post" addPost={props.addPost} newPostText={props.newPostText} updateNewPostText={props.updateNewPostText}/>
+        <NewPost buttonText="Add Post" newPostText={props.newPostText} dispatch={props.dispatch}/>
         <RecentPosts posts={props.posts}/>
       </div>
   );
