@@ -9,10 +9,10 @@ const Dialogs = (props) => {
       <div className={classes.dialogs}>
           <h2 className={classes.title}>Your Messages</h2>
           <div className={classes.dialogsInner}>
-              <Chats chats={props.state.chats}/>
-              <MessageBox messages={props.state.messages} id="2" />
+              <Chats chats={props.dialogsPage.chats}/>
+              <MessageBox messages={props.dialogsPage.messages} id="2" />
           </div>
-          <NewMessage buttonText="Send" sendMessage={props.sendMessage} />
+          <NewMessage buttonText="Send" newMessageText={props.dialogsPage.newMessageText} sendMessage={props.sendMessage} updateNewMessageText={props.updateNewMessageText}/>
       </div>
 
   );
