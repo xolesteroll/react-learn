@@ -10,7 +10,7 @@ const Profile = (props) => {
         <div className={classes.profile}>
             <Banner/>
             <ProfileInfo/>
-            <Posts posts={props.profilePage.posts} newPostText={props.profilePage.newPostText} dispatch={props.dispatch}/>
+            <Posts store={props.store}/>
         </div>
     );
 };

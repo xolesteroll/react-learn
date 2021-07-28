@@ -4,7 +4,7 @@ import Chat from "./Chat/Chat";
 
 const Chats = (props) => {
 
-    let chatsElements = props.chats.map(el => <Chat key={el.id} name={el.name} id={el.id}/>)
+    let chatsElements = props.state.dialogsPage.chats.map(el => <Chat key={el.id} name={el.name} id={el.id}/>)
 
     return (
         <div className={classes.chats}>

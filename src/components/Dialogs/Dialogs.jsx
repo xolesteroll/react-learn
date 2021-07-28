@@ -9,11 +9,11 @@ const Dialogs = (props) => {
         <div className={classes.dialogs}>
             <h2 className={classes.title}>Your Messages</h2>
             <div className={classes.dialogsInner}>
-                <Chats chats={props.dialogsPage.chats}/>
-                <MessageBox messages={props.dialogsPage.messages} id="2"/>
+                <Chats state={props.store.getState()}/>
+                <MessageBox messages={props.state.dialogsPage.messages} id="2"/>
             </div>
-            <NewMessage buttonText="Send" newMessageText={props.dialogsPage.newMessageText}
-                        dispatch={props.dispatch}/>
+            <NewMessage buttonText="Send"
+                        store={props.store}/>
         </div>
 
     );

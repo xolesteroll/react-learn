@@ -1,26 +1,28 @@
 import React from 'react';
 import classes from "./NewPost.module.css";
+import {
+    addPostCreator,
+    updateNewPostTextCreator
+} from "../../../../redux/state";
+
+
 
 const NewPost = (props) => {
 
-    let newPostElement = React.createRef()
+    let state = props.store.getState()
+
     let addPost = () => {
-        props.dispatch({
-            type: 'ADD-POST'
-        })
+        props.store.dispatch(addPostCreator())
     }
 
-    let onPostChange = () => {
-        const text = newPostElement.current.value
-        props.dispatch({
-            type: 'UPDATE-NEW-POST-TEXT',
-            text: text
-        });
+    let onPostChange = (e) => {
+        const text = e.target.value
+        props.store.dispatch(updateNewPostTextCreator(text));
     }
 
     return (
         <div className={classes.new}>
-            <textarea ref={newPostElement} value={props.newPostText}
+            <textarea value={state.profilePage.newPostText}
                       onChange={onPostChange}
                       className={classes.text}/>
             <button

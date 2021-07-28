@@ -4,7 +4,7 @@ import classes from "./RecentPosts.module.css";
 
 const RecentPosts = (props) => {
 
-    let postsElements = props.posts.map(el => <Post key={el.id} message={el.message} likeCount={el.likeCount}/>)
+    let postsElements = props.state.profilePage.posts.map(el => <Post key={el.id} message={el.message} likeCount={el.likeCount}/>)
 
     return (
         <div className={classes.recent}>

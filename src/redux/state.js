@@ -1,3 +1,9 @@
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const SEND_MESSAGE = 'SEND-MESSAGE'
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+
+
 let store = {
     _state: {
         profilePage: {
@@ -28,7 +34,7 @@ let store = {
                     likeCount: 16
                 }
             ],
-            newPostText: 'it-kasutra'
+            newPostText: ''
         },
         dialogsPage: {
             chats: [
@@ -170,7 +176,7 @@ let store = {
                     },
                 ]
             ],
-            newMessageText: 'New Message'
+            newMessageText: ''
         },
         sidebar: {
             friends: [
@@ -192,7 +198,7 @@ let store = {
             ]
         }
     },
-    _callSubscriber()  {
+    _callSubscriber() {
 
     },
     getState() {
@@ -205,38 +211,69 @@ let store = {
 
     dispatch(action) { // {type: 'ADD-POST'}
 
-        if (action.type === 'ADD-POST') {
-            let newPost = {
-                id: this._state.profilePage.posts.length + 1,
-                message: this._state.profilePage.newPostText,
-                likeCount: 0
-            }
-            this._state.profilePage.posts.unshift(newPost)
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber(this._state)
-        } else if (action.type === 'SEND-MESSAGE') {
-            let newMessage = {
-                id: this._state.dialogsPage.messages[2].length + 1,
-                message: this._state.dialogsPage.newMessageText,
-                messageOut: true
-            }
+        switch (action.type) {
+            case ADD_POST :
+                let newPost = {
+                    id: this._state.profilePage.posts.length + 1,
+                    message: this._state.profilePage.newPostText,
+                    likeCount: 0
+                }
+                this._state.profilePage.posts.unshift(newPost)
+                this._state.profilePage.newPostText = ''
+                this._callSubscriber(this._state)
+                break
+            case SEND_MESSAGE :
+                let newMessage = {
+                    id: this._state.dialogsPage.messages[2].length + 1,
+                    message: this._state.dialogsPage.newMessageText,
+                    messageOut: true
+                }
 
-            this._state.dialogsPage.messages[2].push(newMessage)
-            this._state.dialogsPage.newMessageText = ''
-            this._callSubscriber(this._state)
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-
-            this._state.profilePage.newPostText = action.text
-            console.log(this._state.profilePage.newPostText)
-            this._callSubscriber(this._state)
-
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessageText = action.text
-            console.log(this._state.dialogsPage.newMessageText)
-            this._callSubscriber(this._state)
+                this._state.dialogsPage.messages[2].push(newMessage)
+                this._state.dialogsPage.newMessageText = ''
+                this._callSubscriber(this._state)
+                break
+            case UPDATE_NEW_POST_TEXT :
+                this._state.profilePage.newPostText = action.text
+                console.log(this._state.profilePage.newPostText)
+                this._callSubscriber(this._state)
+                break
+            case UPDATE_NEW_MESSAGE_TEXT :
+                this._state.dialogsPage.newMessageText = action.text
+                console.log(this._state.dialogsPage.newMessageText)
+                this._callSubscriber(this._state)
+                break
+            default :
+                break
         }
 
+    }
+}
 
+export const addPostCreator = () => {
+    return {
+        type: ADD_POST
+    }
+}
+
+export const updateNewPostTextCreator = (text) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        text: text
+    }
+}
+
+
+export const sendMessageCreator = () => {
+    return {
+        type: SEND_MESSAGE
+    }
+}
+
+export const updateNewMessageTextCreator = (text) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
+        text: text
     }
 }
 

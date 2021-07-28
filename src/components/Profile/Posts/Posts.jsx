@@ -8,8 +8,8 @@ const Posts = (props) => {
   return (
       <div className={classes.posts}>
         <h3 className={classes.title}>My Posts</h3>
-        <NewPost buttonText="Add Post" newPostText={props.newPostText} dispatch={props.dispatch}/>
-        <RecentPosts posts={props.posts}/>
+        <NewPost buttonText="Add Post" store={props.store}/>
+        <RecentPosts state={props.store.getState()}/>
       </div>
   );
 };
