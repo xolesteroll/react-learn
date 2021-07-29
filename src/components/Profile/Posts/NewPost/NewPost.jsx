@@ -3,8 +3,7 @@ import classes from "./NewPost.module.css";
 import {
     addPostCreator,
     updateNewPostTextCreator
-} from "../../../../redux/state";
-
+} from "../../../../redux/profileReducer";
 
 
 const NewPost = (props) => {
@@ -24,13 +23,14 @@ const NewPost = (props) => {
         <div className={classes.new}>
             <textarea value={state.profilePage.newPostText}
                       onChange={onPostChange}
-                      className={classes.text}/>
+                      className={classes.text}
+                      placeholder="Say something to the World"/>
             <button
                 className={classes.button}
                 onClick={addPost}
             >{props.buttonText}</button>
         </div>
-  );
+    );
 };
 
 export default NewPost;

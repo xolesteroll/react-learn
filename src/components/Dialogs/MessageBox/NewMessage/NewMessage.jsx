@@ -2,7 +2,7 @@ import React from 'react'
 import classes from "./NewMessage.module.css"
 import {
     sendMessageCreator, updateNewMessageTextCreator
-} from "../../../../redux/state";
+} from "../../../../redux/dialogsReducer";
 
 
 const NewMessage = (props) => {
@@ -19,8 +19,9 @@ const NewMessage = (props) => {
 
     return (
         <div className={classes.new}>
-            <textarea  value={state.dialogsPage.newMessageText} className={classes.text}
-                      onChange={onMessageChange}/>
+            <textarea value={state.dialogsPage.newMessageText} className={classes.text}
+                      onChange={onMessageChange}
+                      placeholder="Type your message here"/>
             <button
                 className={classes.button}
                 onClick={addMessage}

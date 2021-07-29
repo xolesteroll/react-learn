@@ -1,7 +1,6 @@
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-const SEND_MESSAGE = 'SEND-MESSAGE'
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
+import sidebarReducer from "./sidebarReducer";
 
 
 let store = {
@@ -209,73 +208,18 @@ let store = {
         this._callSubscriber = observer;
     },
 
-    dispatch(action) { // {type: 'ADD-POST'}
+    dispatch(action) {
 
-        switch (action.type) {
-            case ADD_POST :
-                let newPost = {
-                    id: this._state.profilePage.posts.length + 1,
-                    message: this._state.profilePage.newPostText,
-                    likeCount: 0
-                }
-                this._state.profilePage.posts.unshift(newPost)
-                this._state.profilePage.newPostText = ''
-                this._callSubscriber(this._state)
-                break
-            case SEND_MESSAGE :
-                let newMessage = {
-                    id: this._state.dialogsPage.messages[2].length + 1,
-                    message: this._state.dialogsPage.newMessageText,
-                    messageOut: true
-                }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
-                this._state.dialogsPage.messages[2].push(newMessage)
-                this._state.dialogsPage.newMessageText = ''
-                this._callSubscriber(this._state)
-                break
-            case UPDATE_NEW_POST_TEXT :
-                this._state.profilePage.newPostText = action.text
-                console.log(this._state.profilePage.newPostText)
-                this._callSubscriber(this._state)
-                break
-            case UPDATE_NEW_MESSAGE_TEXT :
-                this._state.dialogsPage.newMessageText = action.text
-                console.log(this._state.dialogsPage.newMessageText)
-                this._callSubscriber(this._state)
-                break
-            default :
-                break
-        }
+        this._callSubscriber(this._state)
 
     }
 }
 
-export const addPostCreator = () => {
-    return {
-        type: ADD_POST
-    }
-}
 
-export const updateNewPostTextCreator = (text) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        text: text
-    }
-}
-
-
-export const sendMessageCreator = () => {
-    return {
-        type: SEND_MESSAGE
-    }
-}
-
-export const updateNewMessageTextCreator = (text) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_TEXT,
-        text: text
-    }
-}
 
 window.store = store
 export default store
