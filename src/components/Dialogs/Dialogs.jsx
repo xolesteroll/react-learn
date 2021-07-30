@@ -1,19 +1,18 @@
 import React from 'react';
 import classes from "./Dialogs.module.css";
-import Chats from "./Chats/Chats";
-import MessageBox from "./MessageBox/MessageBox";
-import NewMessage from "./MessageBox/NewMessage/NewMessage";
+import NewMessageContainer from "./MessageBox/NewMessage/NewMessageContainer";
+import ChatsContainer from "./Chats/ChatsContainer";
+import MessageBoxContainer from "./MessageBox/MessageBoxContainer";
 
 const Dialogs = (props) => {
     return (
         <div className={classes.dialogs}>
             <h2 className={classes.title}>Your Messages</h2>
             <div className={classes.dialogsInner}>
-                <Chats state={props.store.getState()}/>
-                <MessageBox messages={props.state.dialogsPage.messages} id="2"/>
+                <ChatsContainer />
+                <MessageBoxContainer />
             </div>
-            <NewMessage buttonText="Send"
-                        store={props.store}/>
+            <NewMessageContainer />
         </div>
 
     );

@@ -1,34 +1,30 @@
 import React from 'react';
 import classes from "./NewPost.module.css";
-import {
-    addPostCreator,
-    updateNewPostTextCreator
-} from "../../../../redux/profileReducer";
 
 
 const NewPost = (props) => {
 
-    let state = props.store.getState()
+    let newPostText = props.newPostText
 
     let addPost = () => {
-        props.store.dispatch(addPostCreator())
+        props.addPost()
     }
 
     let onPostChange = (e) => {
         const text = e.target.value
-        props.store.dispatch(updateNewPostTextCreator(text));
+        props.onPostChange(text)
     }
 
     return (
         <div className={classes.new}>
-            <textarea value={state.profilePage.newPostText}
+            <textarea value={newPostText}
                       onChange={onPostChange}
                       className={classes.text}
                       placeholder="Say something to the World"/>
             <button
                 className={classes.button}
                 onClick={addPost}
-            >{props.buttonText}</button>
+            >Add Post</button>
         </div>
     );
 };

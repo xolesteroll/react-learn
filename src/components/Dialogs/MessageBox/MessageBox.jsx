@@ -5,7 +5,7 @@ import MessageOut from "./MessageOut/MessageOut";
 
 const MessageBox = (props) => {
 
-    let messageElements = props.messages[props.id].map(el => el.messageOut ? <MessageOut key={el.id} message={el.message}/> :
+    let messageElements = props.messages.map(el => el.messageOut ? <MessageOut key={el.id} message={el.message}/> :
         <MessageIn key={el.id} message={el.message}/>)
 
     return (

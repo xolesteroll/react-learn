@@ -1,15 +1,15 @@
 import React from 'react';
-import NewPost from "./NewPost/NewPost";
 import classes from "./Posts.module.css";
-import RecentPosts from "./RecentPosts/RecentPosts";
+import NewPostContainer from "./NewPost/NewPostContainer";
+import RecentPostsContainer from "./RecentPosts/RecentPostsContainer";
 
 const Posts = (props) => {
 
   return (
       <div className={classes.posts}>
         <h3 className={classes.title}>My Posts</h3>
-        <NewPost buttonText="Add Post" store={props.store}/>
-        <RecentPosts state={props.store.getState()}/>
+        <NewPostContainer />
+        <RecentPostsContainer />
       </div>
   );
 };
