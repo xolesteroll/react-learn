@@ -16,7 +16,9 @@
     font-size: 23px;
 }
 
-.item:last-child {
+
+.item:last-child,
+.item:nth-child(5){
     margin-top: 50px;
 }
 

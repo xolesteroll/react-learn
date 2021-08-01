@@ -3,7 +3,7 @@ import MessageBox from "./MessageBox";
 
 const mapStateToProps = (state) => {
     return {
-        messages: state.dialogsPage.messages[2]
+        messages: state.dialogsPage.messages
 
     }
 }

@@ -1,0 +1,52 @@
+.usersWrapper {
+    padding: 25px;
+}
+
+.userBox {
+    display: flex;
+    column-gap: 15px;
+    margin-bottom: 15px;
+    background-color: #fff;
+}
+
+.avatarAndFollow {
+    max-width: 25%;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.userInfo {
+    width: 100%;
+    padding: 10px;
+}
+
+.avatar {
+    width: 100%;
+    margin-bottom: 15px;
+}
+.avatar img {
+    max-width: 100%;
+}
+
+.followBtn {
+    width: 100%;
+    padding: 5px;
+    background-color: rgb(28, 81, 151);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.showMore {
+    display: block;
+    margin: 20px auto 0;
+    width: 200px;
+    padding: 15px 10px;
+    text-align: center;
+    background-color: rgb(28, 81, 151);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
