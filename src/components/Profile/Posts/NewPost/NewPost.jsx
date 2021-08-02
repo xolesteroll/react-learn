@@ -1,32 +1,27 @@
 import React from 'react';
 import classes from "./NewPost.module.css";
 
-
-const NewPost = (props) => {
-
-    let newPostText = props.newPostText
-
-    let addPost = () => {
-        props.addPost()
-    }
-
-    let onPostChange = (e) => {
+class NewPost extends React.Component {
+    onPostChange = (e) => {
         const text = e.target.value
-        props.onPostChange(text)
+        this.props.onPostChange(text)
     }
 
-    return (
-        <div className={classes.new}>
-            <textarea value={newPostText}
-                      onChange={onPostChange}
+    render() {
+        return (
+            <div className={classes.new}>
+            <textarea value={this.props.newPostText}
+                      onChange={this.onPostChange}
                       className={classes.text}
                       placeholder="Say something to the World"/>
-            <button
-                className={classes.button}
-                onClick={addPost}
-            >Add Post</button>
-        </div>
-    );
-};
+                <button
+                    className={classes.button}
+                    onClick={this.props.addPost}
+                >Add Post</button>
+            </div>
+        )
+    }
+}
+
 
 export default NewPost;

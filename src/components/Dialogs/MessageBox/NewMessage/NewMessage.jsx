@@ -1,28 +1,27 @@
 import React from 'react'
 import classes from "./NewMessage.module.css"
 
-
-const NewMessage = (props) => {
-
-    let newMessageText = props.newMessageText
-
-
-    let onMessageChange = (e) => {
+class NewMessage extends React.Component {
+    onMessageChange = (e) => {
         let text = e.target.value
-        props.onMessageChange(text)
+        this.props.onMessageChange(text)
     }
 
-    return (
-        <div className={classes.new}>
-            <textarea value={newMessageText} className={classes.text}
-                      onChange={onMessageChange}
+    render() {
+        return (
+            <div className={classes.new}>
+            <textarea value={this.props.newMessageText} className={classes.text}
+                      onChange={this.onMessageChange}
                       placeholder="Type your message here"/>
-            <button
-                className={classes.button}
-                onClick={props.sendMessage}
-            >Send Message</button>
-        </div>
-    )
+                <button
+                    className={classes.button}
+                    onClick={this.props.sendMessage}
+                >Send Message</button>
+            </div>
+        )
+    }
 }
+
+
 
 export default NewMessage

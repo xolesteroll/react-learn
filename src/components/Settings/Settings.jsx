@@ -1,12 +1,14 @@
-import React from 'react';
-import classes from "./Settings.module.css";
+import React from 'react'
+import classes from "./Settings.module.css"
 
-const Settings = () => {
-  return (
-    <div className={classes.settings}>
-      Settings
-    </div>
-  );
-};
+class Settings extends React.Component {
+    render() {
+        return (
+            <div className={classes.settings}>
+                Settings
+            </div>
+        )
+    }
+}
 
-export default Settings;
+export default Settings

@@ -1,18 +1,17 @@
-import React from 'react';
-import Post from "./Post/Post";
-import classes from "./RecentPosts.module.css";
+import React from 'react'
+import Post from "./Post/Post"
+import classes from "./RecentPosts.module.css"
 
-const RecentPosts = (props) => {
+class RecentPosts extends React.Component {
+    render() {
+        return (
+            <div className={classes.recent}>
 
-    let postsElements = props.posts.map(el => <Post key={el.id} message={el.message} likeCount={el.likeCount}/>)
+                <h3 className={classes.title}>Recent posts</h3>
+                {this.props.posts.map(el => <Post key={el.id} message={el.message} likeCount={el.likeCount}/>)}
+            </div>
+        )
+    }
+}
 
-    return (
-        <div className={classes.recent}>
-
-            <h3 className={classes.title}>Recent posts</h3>
-            {postsElements}
-        </div>
-    );
-};
-
-export default RecentPosts;
+export default RecentPosts

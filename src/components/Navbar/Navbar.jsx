@@ -3,8 +3,9 @@ import classes from "./Navbar.module.css"
 import {NavLink} from "react-router-dom";
 import SidebarContainer from "./Sidebar/SidebarContainer";
 
-const Navbar = (props) => {
-    return (
+class Navbar extends React.Component {
+    render() {
+        return (
             <nav className={classes.nav}>
                 <ul className={classes.list}>
                     <li className={classes.item}>
@@ -27,10 +28,10 @@ const Navbar = (props) => {
                     </li>
                 </ul>
                 <SidebarContainer />
-
-
             </nav>
-    );
-};
+        )
+    }
+}
+
 
 export default Navbar;
