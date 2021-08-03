@@ -4,7 +4,7 @@ import classes from "./NewMessage.module.css"
 class NewMessage extends React.Component {
     onMessageChange = (e) => {
         let text = e.target.value
-        this.props.onMessageChange(text)
+        this.props.updateNewMessageText(text)
     }
 
     render() {

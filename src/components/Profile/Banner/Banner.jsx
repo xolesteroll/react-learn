@@ -1,18 +1,19 @@
 import React from 'react'
 import classes from "./Banner.module.css"
+import noImage from "../../../assets/images/not_found.jpg"
 
-class Banner extends React.Component {
-    render() {
-        return (
-            <div
-                className={classes.banner}
-                style={{
-                    backgroundImage:
-                        `url(./maxresdefault.jpg)`,
-                }}
-            > </div>
-        )
-    }
+const Banner = (props) => {
+    return (
+        <div
+            className={classes.banner}
+            style={{
+                backgroundImage:
+                    `url(${props.image ? props.image : noImage})`
+            }}
+        >
+
+        </div>
+    )
 }
 
 

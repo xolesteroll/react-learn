@@ -4,7 +4,7 @@ import classes from "./NewPost.module.css";
 class NewPost extends React.Component {
     onPostChange = (e) => {
         const text = e.target.value
-        this.props.onPostChange(text)
+        this.props.updateNewPostText(text)
     }
 
     render() {

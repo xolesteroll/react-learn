@@ -1,5 +1,6 @@
 .usersWrapper {
     padding: 25px;
+    position: relative;
 }
 
 .userBox {
@@ -66,3 +67,4 @@
 .selectedPage {
     font-weight: bold;
 }
+

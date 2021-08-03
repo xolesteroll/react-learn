@@ -1,6 +1,7 @@
 import React from "react"
 import classes from "./Users.module.css";
 import userPhotoNotFound from "../../assets/images/not_found.jpg";
+import {NavLink} from "react-router-dom";
 
 const Users = (props) => {
     // let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
@@ -21,11 +22,13 @@ const Users = (props) => {
         {
             props.users.map(u => <div className={classes.userBox} key={u.id}>
                 <div className={classes.avatarAndFollow}>
+                    <NavLink to={`/profile/${u.id}`} >
                     <div className={classes.avatar}>
                         <img
                             src={u.photos.small ? u.photos.small : userPhotoNotFound}
                             alt='user avatar'/>
                     </div>
+                    </NavLink>
                     {u.followed ? <button onClick={() => {
                             props.unfollow(u.id)
                         }} className={classes.followBtn}>Unfollow</button> :
@@ -46,7 +49,7 @@ const Users = (props) => {
                         <div className={classes.userCountry}>{"u.location.country"}</div>
                     </div>
                 </div>
-            </div>)
+            </div> )
         }
         <button onClick={() => {
             props.onPageChanged(props.currentPage + 1)
