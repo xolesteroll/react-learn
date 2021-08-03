@@ -1,34 +1,14 @@
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
+const CHANGE_PAGE = 'CHANGE_PAGE'
+const SET_USERS_COUNT = 'SET_USERS_COUNT'
 
 const initialState = {
-    users: [
-        // {
-        //     id: 1,
-        //     imageUrl: 'https://cdn.pixabay.com/photo/2019/03/10/18/46/kampfstort-4046939_960_720.jpg',
-        //     fullName: 'Anton',
-        //     status: 'I am A BOSS',
-        //     location: {city: 'Minsk', country: 'Belarus'},
-        //     followed: true
-        // },
-        // {
-        //     id: 2,
-        //     imageUrl: 'https://cdn.pixabay.com/photo/2019/03/10/18/46/kampfstort-4046939_960_720.jpg',
-        //     fullName: 'vasya',
-        //     status: 'I am A BOSSssssssss',
-        //     location: {city: 'NYC', country: 'USA'},
-        //     followed: false
-        // },
-        // {
-        //     id: 3,
-        //     imageUrl: 'https://cdn.pixabay.com/photo/2019/03/10/18/46/kampfstort-4046939_960_720.jpg',
-        //     fullName: 'shmara',
-        //     status: 'I am A BOSSsssssss',
-        //     location: {city: 'Chisinau', country: 'MOLDOVA'},
-        //     followed: true
-        // }
-    ]
+    users: [],
+    pageSize: 10,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -56,6 +36,10 @@ const usersReducer = (state = initialState, action) => {
             }
         case SET_USERS :
             return {...state, users: [...state.users, ...action.users]}
+        case CHANGE_PAGE :
+            return {...state, currentPage: action.pageNumber}
+        case SET_USERS_COUNT :
+            return {...state, totalUsersCount: action.totalCount}
         default:
             return state
     }
@@ -64,5 +48,7 @@ const usersReducer = (state = initialState, action) => {
 export const followActionCreator = (userId) => ({type: FOLLOW, userId})
 export const unfollowActionCreator = (userId) => ({type: UNFOLLOW, userId})
 export const setUsersActionCreator = (users) => ({type: SET_USERS, users})
+export const changePageActionCreator = (pageNumber) => ({type: CHANGE_PAGE, pageNumber})
+export const setTotalUsersCountActionCreator = (totalCount) => ({type: SET_USERS_COUNT, totalCount})
 
 export default usersReducer

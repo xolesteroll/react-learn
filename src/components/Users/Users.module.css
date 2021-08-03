@@ -27,6 +27,7 @@
 }
 .avatar img {
     max-width: 100%;
+    width: 100%;
 }
 
 .followBtn {
@@ -50,4 +51,18 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.pageNumWrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pageNumWrapper span {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.selectedPage {
+    font-weight: bold;
 }
