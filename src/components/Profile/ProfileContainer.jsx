@@ -3,15 +3,44 @@ import Profile from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
 import {setUserProfile} from "../../redux/profileReducer";
+import {withRouter} from "react-router-dom";
+import myBigImage from "../../assets/images/maxresdefault.jpg"
+import mySmallImage from "../../assets/images/f35c19d82353f23ebd371a8573fa1f3a.jpg"
+
 
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
-            .then(response => {
-                console.log(response.data)
-                this.props.setUserProfile(response.data)
+        const userId = this.props.match.params.userId
+        if (!userId) {
+            this.props.setUserProfile({
+                "aboutMe": "Да все заебись",
+                "contacts": {
+                    "facebook": "facebook.com",
+                    "website": null,
+                    "vk": "vk.com/dimych",
+                    "twitter": "https://twitter.com/@sdf",
+                    "instagram": "instagra.com/sds",
+                    "youtube": null,
+                    "github": "github.com",
+                    "mainLink": null
+                },
+                "lookingForAJob": true,
+                "lookingForAJobDescription": "Да ваще похуй, давай любую",
+                "fullName": "Антоха",
+                "userId": 99999,
+                "photos": {
+                    "small": mySmallImage,
+                    "large": myBigImage
+                }
             })
+        } else {
+            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+                .then(response => {
+                    this.props.setUserProfile(response.data)
+                })
+        }
+
     }
 
     render() {
@@ -25,6 +54,7 @@ const mapStateToProps = (state) => ({
     profile: state.profilePage.profile
 })
 
+
 export default connect(mapStateToProps, {
     setUserProfile
-})(ProfileContainer)
+})(withRouter(ProfileContainer))

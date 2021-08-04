@@ -8,3 +8,14 @@
 .logo {
   width: 70px;
 }
+
+.loginBlock {
+  float: right;
+  padding: 5px 10px;
+}
+
+.loginBtn, .profile {
+  text-decoration: none;
+  font-size: 20px;
+  color: #ffffff;
+}
