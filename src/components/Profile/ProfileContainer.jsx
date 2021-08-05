@@ -1,11 +1,11 @@
 import React from 'react'
 import Profile from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
 import {setUserProfile} from "../../redux/profileReducer";
 import {withRouter} from "react-router-dom";
 import myBigImage from "../../assets/images/maxresdefault.jpg"
 import mySmallImage from "../../assets/images/f35c19d82353f23ebd371a8573fa1f3a.jpg"
+import usersAPI from "../../dal/api";
 
 
 class ProfileContainer extends React.Component {
@@ -35,9 +35,9 @@ class ProfileContainer extends React.Component {
                 }
             })
         } else {
-            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+            usersAPI.getUserProfile(userId)
                 .then(response => {
-                    this.props.setUserProfile(response.data)
+                    this.props.setUserProfile(response)
                 })
         }
 

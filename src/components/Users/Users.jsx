@@ -2,7 +2,7 @@ import React from "react"
 import classes from "./Users.module.css";
 import userPhotoNotFound from "../../assets/images/not_found.jpg";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
+import usersAPI from "../../dal/api";
 
 const Users = (props) => {
     // let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
@@ -30,42 +30,39 @@ const Users = (props) => {
                                 alt='user avatar'/>
                         </div>
                     </NavLink>
-                    {u.followed ? <button onClick={() => {
-                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                            withCredentials: true,
-                            headers: {
-                                "API-KEY": "3cd12ddf-9e97-4197-9a6e-c6dc930a318b"
-                            }
-                        })
-                            .then(response => {
-                                console.log(response)
-                                if (response.data.resultCode === 0) {
-                                    props.unfollow(u.id)
-                                }
+                    {u.followed ?
+                        <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                            props.setFollowingInProgress(true, u.id)
+                            usersAPI.deleteFollow(u.id)
+                                .then(response => {
+                                    console.log(response)
+                                    if (response === 0) {
+                                        props.unfollow(u.id)
+                                    }
+                                    props.setFollowingInProgress(false, u.id)
 
-                            })
-                            .catch(e => {
-                                alert(e)
-                            })
+                                })
+                                .catch(e => {
+                                    alert(e)
+                                    props.setFollowingInProgress(false, u.id)
+                                })
 
-                    }} className={classes.followBtn}>Unfollow</button> :
-                        <button onClick={() => {
-                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                            withCredentials: true,
-                            headers: {
-                                "API-KEY": "3cd12ddf-9e97-4197-9a6e-c6dc930a318b"
-                            }
-                        })
-                            .then(response => {
-                                console.log(response)
-                                if (response.data.resultCode === 0) {
-                                    props.follow(u.id)
-                                }
-                            })
-                            .catch(e => {
-                                alert(e)
-                            })
-                    }} className={classes.followBtn}>Follow</button>}
+                        }} className={classes.followBtn}>Unfollow</button> :
+                        <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                            props.setFollowingInProgress(true, u.id)
+                            usersAPI.postFollow(u.id)
+                                .then(response => {
+                                    console.log(response)
+                                    if (response === 0) {
+                                        props.follow(u.id)
+                                    }
+                                    props.setFollowingInProgress(false, u.id)
+                                })
+                                .catch(e => {
+                                    alert(e)
+                                    props.setFollowingInProgress(false, u.id)
+                                })
+                        }} className={classes.followBtn}>Follow</button>}
 
                 </div>
                 <div className={classes.userInfo}>

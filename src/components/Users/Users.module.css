@@ -41,6 +41,12 @@
     cursor: pointer;
 }
 
+.followBtn:disabled,
+.followBtn[disabled] {
+    background-color: #cccccc;
+    cursor: default;
+}
+
 .showMore {
     display: block;
     margin: 20px auto 0;
