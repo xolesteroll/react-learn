@@ -3,6 +3,7 @@ import classes from "./Header.module.css";
 import {NavLink} from "react-router-dom";
 
 class Header extends React.Component {
+
     render() {
         return (
             <header className={classes.header}>
@@ -14,7 +15,6 @@ class Header extends React.Component {
                     />
                 </NavLink>
                 <div className={classes.loginBlock}>
-
                     {this.props.isAuth ? <NavLink className={classes.profile} to={`/profile/${this.props.userId}`}>{this.props.login}</NavLink> :
                         <NavLink className={classes.loginBtn} to="/login">Login</NavLink>}
                 </div>

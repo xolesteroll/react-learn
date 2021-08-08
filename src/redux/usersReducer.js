@@ -1,3 +1,5 @@
+import {usersAPI} from "../dal/api";
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
@@ -58,13 +60,58 @@ const usersReducer = (state = initialState, action) => {
     }
 }
 
-export const follow = (userId) => ({type: FOLLOW, userId})
-export const unfollow = (userId) => ({type: UNFOLLOW, userId})
+export const followSuccess = (userId) => ({type: FOLLOW, userId})
+export const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId})
 export const setUsers = (users) => ({type: SET_USERS, users})
 export const changePage = (pageNumber) => ({type: CHANGE_PAGE, pageNumber})
 export const setTotalUsersCount = (totalCount) => ({type: SET_USERS_COUNT, totalCount})
 export const setIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
 export const setFollowingInProgress = (isFetching, userId) => ({type: FOLLOWING_IN_PROGRESS, isFetching, userId})
+
+export const getUsers = (currentPage, pageSize) => (dispatch) => {
+    dispatch(setIsFetching(true))
+
+    usersAPI.getUsers(currentPage, pageSize)
+        .then(response => {
+            dispatch(setIsFetching(false))
+            dispatch(setUsers(response.items))
+            dispatch(setTotalUsersCount(response.totalCount))
+        })
+}
+
+export const unfollow = (userId) => (dispatch) => {
+    dispatch(setFollowingInProgress(true, userId))
+    usersAPI.deleteFollow(userId)
+        .then(response => {
+            console.log(response)
+            if (response === 0) {
+                dispatch(unfollowSuccess(userId))
+            }
+            dispatch(setFollowingInProgress(false, userId))
+
+        })
+        .catch(e => {
+            alert(e)
+            dispatch(setFollowingInProgress(false, userId))
+        })
+}
+
+export const follow = (userId) => (dispatch) => {
+    dispatch(setFollowingInProgress(true, userId))
+    usersAPI.postFollow(userId)
+        .then(response => {
+            console.log(response)
+            if (response === 0) {
+                dispatch(followSuccess(userId))
+            }
+            dispatch(setFollowingInProgress(false, userId))
+        })
+        .catch(e => {
+            alert(e)
+            dispatch(setFollowingInProgress(false, userId))
+        })
+}
+
 
 
 export default usersReducer

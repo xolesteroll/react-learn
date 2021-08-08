@@ -2,7 +2,6 @@ import React from "react"
 import classes from "./Users.module.css";
 import userPhotoNotFound from "../../assets/images/not_found.jpg";
 import {NavLink} from "react-router-dom";
-import usersAPI from "../../dal/api";
 
 const Users = (props) => {
     // let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
@@ -32,36 +31,10 @@ const Users = (props) => {
                     </NavLink>
                     {u.followed ?
                         <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                            props.setFollowingInProgress(true, u.id)
-                            usersAPI.deleteFollow(u.id)
-                                .then(response => {
-                                    console.log(response)
-                                    if (response === 0) {
-                                        props.unfollow(u.id)
-                                    }
-                                    props.setFollowingInProgress(false, u.id)
-
-                                })
-                                .catch(e => {
-                                    alert(e)
-                                    props.setFollowingInProgress(false, u.id)
-                                })
-
+                            props.unfollow(u.id)
                         }} className={classes.followBtn}>Unfollow</button> :
                         <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                            props.setFollowingInProgress(true, u.id)
-                            usersAPI.postFollow(u.id)
-                                .then(response => {
-                                    console.log(response)
-                                    if (response === 0) {
-                                        props.follow(u.id)
-                                    }
-                                    props.setFollowingInProgress(false, u.id)
-                                })
-                                .catch(e => {
-                                    alert(e)
-                                    props.setFollowingInProgress(false, u.id)
-                                })
+                           props.follow(u.id)
                         }} className={classes.followBtn}>Follow</button>}
 
                 </div>
