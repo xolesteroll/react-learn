@@ -20,6 +20,12 @@ export const usersAPI = {
     },
     getUserProfile(userId) {
        return requestInstance.get(`profile/${userId}`).then(response => response.data)
+    },
+    getProfileStatus(userId) {
+        return requestInstance.get(`profile/status/${userId}`)
+    },
+    postProfileStatus(status) {
+        return requestInstance.put('profile/status', {status})
     }
 }
 

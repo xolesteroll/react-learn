@@ -1,0 +1,15 @@
+.statusWrapper {
+    min-height: 25px;
+}
+
+.statusShowBox {
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+    width: 100%;
+    height: 100%;
+}
+
+.statusShowBox:hover{
+    background-color: #a39c30;
+}

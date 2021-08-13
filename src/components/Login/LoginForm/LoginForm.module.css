@@ -1,0 +1,45 @@
+.loginForm {
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+.checkboxFieldWrapper {
+    display: flex;
+    align-items: center;
+}
+
+label{
+    display: block;
+    padding: 5px 0;
+}
+
+label[for=checkbox]{
+    display: inline-block;
+}
+
+input{
+    width: 100%;
+    padding: 5px;
+    min-height: 30px;
+    border-radius: 3px;
+    border: none;
+}
+
+input[type=checkbox] {
+    width: auto;
+}
+
+
+button {
+    background-color: rgb(28, 81, 151);
+    color: #ffffff;
+    border: none;
+    display: block;
+    border-radius: 3px;
+    margin-left: auto;
+    padding: 10px 20px;
+    cursor: pointer;
+}
