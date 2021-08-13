@@ -17,6 +17,8 @@ class Header extends React.Component {
                 <div className={classes.loginBlock}>
                     {this.props.isAuth ? <NavLink className={classes.profile} to={`/profile/${this.props.userId}`}>{this.props.login}</NavLink> :
                         <NavLink className={classes.loginBtn} to="/login">Login</NavLink>}
+
+                    {this.props.isAuth && <button className={classes.logoutBtn} onClick={this.props.onUnAuth}>Logout</button>}
                 </div>
             </header>
         )

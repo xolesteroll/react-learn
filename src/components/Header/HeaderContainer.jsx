@@ -2,7 +2,7 @@ import React from 'react';
 import {withRouter} from "react-router-dom";
 import Header from "./Header";
 import {connect} from "react-redux";
-import {auth} from "../../redux/authReducer";
+import {auth, onUnAuth} from "../../redux/authReducer";
 
 class HeaderComponent extends React.Component {
 
@@ -29,4 +29,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     auth,
+    onUnAuth
 })(withRouter(HeaderComponent))
