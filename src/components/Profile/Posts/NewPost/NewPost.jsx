@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from "./NewPost.module.css";
+import PostForm from "./PostForm/PostForm";
 
 class NewPost extends React.Component {
     onPostChange = (e) => {
@@ -7,17 +8,15 @@ class NewPost extends React.Component {
         this.props.updateNewPostText(text)
     }
 
+    onSubmit = () => {
+        this.props.addPost()
+        this.props.clearForm("postForm")
+    }
+
     render() {
         return (
             <div className={classes.new}>
-            <textarea value={this.props.newPostText}
-                      onChange={this.onPostChange}
-                      className={classes.text}
-                      placeholder="Say something to the World"/>
-                <button
-                    className={classes.button}
-                    onClick={this.props.addPost}
-                >Add Post</button>
+            <PostForm {...this.props} onPostChange={this.onPostChange} onSubmit={this.onSubmit} />
             </div>
         )
     }

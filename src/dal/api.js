@@ -35,7 +35,11 @@ export const authAPI = {
     },
 
     login(data) {
-        return requestInstance.post('/auth/login', data).then(response => response.data)
+        return requestInstance.post('/auth/login', data).then(response => {
+            debugger
+            console.log(response)
+            return response.data
+        })
     },
 
     logout() {

@@ -1,5 +1,6 @@
 import React from 'react'
 import classes from "./NewMessage.module.css"
+import MessageForm from "./MessageForm/MessageForm";
 
 class NewMessage extends React.Component {
     onMessageChange = (e) => {
@@ -7,16 +8,15 @@ class NewMessage extends React.Component {
         this.props.updateNewMessageText(text)
     }
 
+    onSubmit = () => {
+        this.props.sendMessage()
+        this.props.clearForm("messageForm")
+    }
+
     render() {
         return (
             <div className={classes.new}>
-            <textarea value={this.props.newMessageText} className={classes.text}
-                      onChange={this.onMessageChange}
-                      placeholder="Type your message here"/>
-                <button
-                    className={classes.button}
-                    onClick={this.props.sendMessage}
-                >Send Message</button>
+            <MessageForm {...this.props} onSubmit={this.onSubmit} onMessageChange={this.onMessageChange}/>
             </div>
         )
     }

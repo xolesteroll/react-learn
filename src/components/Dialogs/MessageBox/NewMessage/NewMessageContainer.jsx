@@ -3,6 +3,7 @@ import {
 } from "../../../../redux/dialogsReducer";
 import NewMessage from "./NewMessage";
 import {connect} from "react-redux";
+import {clearForm} from "../../../../redux/formThunks";
 
 
 let mapStateToProps = (state) => {
@@ -13,7 +14,8 @@ let mapStateToProps = (state) => {
 
 const NewMessageContainer = connect(mapStateToProps, {
     sendMessage,
-    updateNewMessageText
+    updateNewMessageText,
+    clearForm
 })(NewMessage)
 
 export default NewMessageContainer

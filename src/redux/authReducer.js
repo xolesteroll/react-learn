@@ -35,6 +35,7 @@ export const unAuth = () => ({type: UNAUTHORIZE})
 export const login = (data) => (dispatch) => {
     authAPI.login(data).then(response => {
         if(response.resultCode === 0) {
+
             const id = response.data.userId
             const email = data.email
             const login = data.email

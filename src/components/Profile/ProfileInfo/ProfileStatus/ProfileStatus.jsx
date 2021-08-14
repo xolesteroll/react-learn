@@ -24,7 +24,7 @@ class ProfileStatus extends React.Component {
             editMode: false,
             status: message
         })
-        this.props.postProfileStatus(message)
+        this.props.postProfileStatus(this.state.status)
     }
 
     onStatusChange = (e) => {

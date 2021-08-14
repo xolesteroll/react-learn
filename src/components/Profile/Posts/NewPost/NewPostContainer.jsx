@@ -4,6 +4,7 @@ import {
 } from "../../../../redux/profileReducer";
 import NewPost from "./NewPost";
 import {connect} from "react-redux";
+import {clearForm} from "../../../../redux/formThunks";
 
 
 const mapStateToProps = (state) => {
@@ -15,7 +16,8 @@ const mapStateToProps = (state) => {
 
 const NewPostContainer = connect(mapStateToProps, {
     addPost,
-    updateNewPostText
+    updateNewPostText,
+    clearForm
 })(NewPost)
 
 export default NewPostContainer
