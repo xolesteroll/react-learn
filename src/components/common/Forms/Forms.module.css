@@ -1,0 +1,36 @@
+.formWrapper.error input,
+.formWrapper.error textarea{
+    border: 1px solid #f6a6a6;
+}
+
+.formWrapper.error .formWarning {
+    display: block;
+}
+
+.formInner {
+    position: relative;
+}
+
+.formWarning {
+    position: absolute;
+    left: 0;
+    top: -35px;
+    display: none;
+    padding: 2px 5px;
+    background-color: #f6a6a6;
+    color: #000000;
+    border-radius: 3px;
+    font-size: 15px;
+}
+
+.formWarning::before{
+    content: "";
+    position: absolute;
+    bottom: 1px;
+    left: 15px;
+    border: 9px solid transparent;
+    border-top: 9px solid #f6a6a6;
+    transform: translateY(100%);
+}
+
+

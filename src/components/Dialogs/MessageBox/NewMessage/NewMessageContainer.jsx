@@ -1,9 +1,9 @@
 import {
-    sendMessage, updateNewMessageText
+    sendMessage
 } from "../../../../redux/dialogsReducer";
 import NewMessage from "./NewMessage";
 import {connect} from "react-redux";
-import {clearForm} from "../../../../redux/formThunks";
+import {clearForm} from "../../../../utils/formUtils";
 
 
 let mapStateToProps = (state) => {
@@ -14,7 +14,6 @@ let mapStateToProps = (state) => {
 
 const NewMessageContainer = connect(mapStateToProps, {
     sendMessage,
-    updateNewMessageText,
     clearForm
 })(NewMessage)
 

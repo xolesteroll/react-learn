@@ -1,23 +1,19 @@
 import {
-    addPost,
-    updateNewPostText
+    addPost
 } from "../../../../redux/profileReducer";
 import NewPost from "./NewPost";
 import {connect} from "react-redux";
-import {clearForm} from "../../../../redux/formThunks";
+import {clearForm, maxLength} from "../../../../utils/formUtils";
 
 
 const mapStateToProps = (state) => {
     return {
-        newPostText: state.profilePage.newPostText
     }
 }
 
 
-const NewPostContainer = connect(mapStateToProps, {
+export default connect(mapStateToProps, {
     addPost,
-    updateNewPostText,
-    clearForm
+    clearForm,
+    maxLength
 })(NewPost)
-
-export default NewPostContainer

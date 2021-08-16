@@ -16,7 +16,7 @@ const authReducer = (state = initialState, action) => {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data,
+                ...action.payload,
                 isAuth: true
             }
         case UNAUTHORIZE :
@@ -29,23 +29,9 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export const setUserData = ({id, email, login}) => ({type: SET_USER_DATA, data: {id, email, login}})
+export const setUserData = ({id, email, login}) => ({type: SET_USER_DATA, payload: {id, email, login}})
 export const unAuth = () => ({type: UNAUTHORIZE})
 
-export const login = (data) => (dispatch) => {
-    authAPI.login(data).then(response => {
-        if(response.resultCode === 0) {
-
-            const id = response.data.userId
-            const email = data.email
-            const login = data.email
-            dispatch(setUserData({id, email, login}))
-        } else {
-            alert("Вы ввели неправильные данные")
-        }
-
-    })
-}
 
 export const auth = () => (dispatch) => {
     authAPI.me()
@@ -57,6 +43,21 @@ export const auth = () => (dispatch) => {
                 dispatch(unAuth())
             }
         })
+}
+
+
+export const login = (data) => (dispatch) => {
+    authAPI.login(data).then(response => {
+        if(response.resultCode === 0) {
+            const id = response.data.userId
+            const email = data.emailpayload
+            const login = data.email
+            dispatch(setUserData({id, email, login}))
+        } else {
+            alert("Вы ввели неправильные данные")
+        }
+
+    })
 }
 
 export const onUnAuth = () => (dispatch) => {
