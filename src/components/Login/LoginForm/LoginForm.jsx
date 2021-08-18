@@ -1,8 +1,10 @@
 import React from 'react'
 import classes from "./LoginForm.module.css"
+import commonStyles from "./../../common/Forms/Forms.module.css"
 import {Field, reduxForm} from "redux-form";
 import {Input} from "../../common/Forms/Forms";
 import {maxLength, required} from "../../../utils/formUtils";
+
 
 const maxLength25 = maxLength(25)
 
@@ -25,6 +27,7 @@ const LoginForm = (props) => {
         <div className={classes.buttonFieldWrapper}>
             <button>Login</button>
         </div>
+        {props.error && <span className={commonStyles.formWarning}>{props.error}</span>}
     </form>
 }
 

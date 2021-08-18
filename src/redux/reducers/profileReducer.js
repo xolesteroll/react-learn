@@ -1,4 +1,4 @@
-import {usersAPI} from "../dal/api";
+import {usersAPI} from "../../dal/api";
 
 const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'

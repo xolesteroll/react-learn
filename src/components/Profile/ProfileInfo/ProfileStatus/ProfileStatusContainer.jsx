@@ -1,7 +1,7 @@
 import React from 'react';
 import ProfileStatus from "./ProfileStatus";
 import {connect} from "react-redux";
-import {updateProfileStatus, postProfileStatus} from "../../../../redux/profileReducer";
+import {updateProfileStatus, postProfileStatus} from "../../../../redux/reducers/profileReducer";
 
 class ProfileStatusContainer extends React.Component {
 

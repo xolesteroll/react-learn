@@ -1,6 +1,6 @@
 import {
     sendMessage
-} from "../../../../redux/dialogsReducer";
+} from "../../../../redux/reducers/dialogsReducer";
 import NewMessage from "./NewMessage";
 import {connect} from "react-redux";
 import {clearForm} from "../../../../utils/formUtils";

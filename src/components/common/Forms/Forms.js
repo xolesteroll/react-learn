@@ -7,7 +7,7 @@ const formControl = Element => ({ input, meta, ...props }) => {
         <div className={`${classes.formWrapper} ${meta.touched && meta.error ? classes.error : ""}`}>
             <div className={classes.formInner}>
                 <Element {...input} {...props}/>
-                <span className={classes.formWarning}>{meta.error}</span>
+                {meta.touched && meta.error && <span className={classes.formWarning}>{meta.error}</span>}
             </div>
         </div>
     );

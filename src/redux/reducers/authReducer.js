@@ -1,4 +1,5 @@
-import {authAPI} from "../dal/api";
+import {authAPI} from "../../dal/api";
+import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = 'SET_USER_DATA'
 const UNAUTHORIZE = 'UNAUTHORIZE'
@@ -22,6 +23,9 @@ const authReducer = (state = initialState, action) => {
         case UNAUTHORIZE :
             return {
                 ...state,
+                id: null,
+                email: null,
+                login: null,
                 isAuth: false
             }
         default:
@@ -34,7 +38,7 @@ export const unAuth = () => ({type: UNAUTHORIZE})
 
 
 export const auth = () => (dispatch) => {
-    authAPI.me()
+    return authAPI.me()
         .then((response) => {
             if (response.resultCode === 0) {
                 let {id, login, email} = response.data
@@ -47,14 +51,16 @@ export const auth = () => (dispatch) => {
 
 
 export const login = (data) => (dispatch) => {
+
     authAPI.login(data).then(response => {
         if(response.resultCode === 0) {
             const id = response.data.userId
-            const email = data.emailpayload
+            const email = data.email
             const login = data.email
             dispatch(setUserData({id, email, login}))
         } else {
-            alert("Вы ввели неправильные данные")
+            let errorMessage = response.messages.length > 0 ? response.messages[0] : "Something went wrong"
+            dispatch(stopSubmit("loginForm", {_error: errorMessage}))
         }
 
     })

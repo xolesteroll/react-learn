@@ -1,9 +1,9 @@
 import React from 'react'
 import {connect} from "react-redux";
 import Login from "./Login";
-import {login} from "../../redux/authReducer";
+import {login} from "../../redux/reducers/authReducer";
 import {compose} from "redux";
-import {onAuthRedirect} from "../../hoc/onAuthRedirect";
+import {onAuthRedirect} from "../../hoc/redirectHocs/onAuthRedirect";
 
 const LoginContainer = (props) => {
     const onSubmit = (formData) => {

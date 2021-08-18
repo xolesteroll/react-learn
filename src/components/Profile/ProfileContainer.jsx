@@ -7,9 +7,9 @@ import {
     setUserProfile,
     updateProfileStatus,
     updateProfileStatusText
-} from "../../redux/profileReducer";
+} from "../../redux/reducers/profileReducer";
 import {withRouter} from "react-router-dom";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {withAuthRedirect} from "../../hoc/redirectHocs/withAuthRedirect";
 import {compose} from "redux";
 
 
@@ -27,6 +27,12 @@ class ProfileContainer extends React.Component {
 
     componentDidMount() {
         this.showProfile()
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.match.params.userId !== this.props.match.params.userId) {
+            this.showProfile()
+        }
     }
 
 
