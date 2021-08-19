@@ -27,7 +27,7 @@ const LoginForm = (props) => {
         <div className={classes.buttonFieldWrapper}>
             <button>Login</button>
         </div>
-        {props.error && <span className={commonStyles.formWarning}>{props.error}</span>}
+        {props.error && <span className={commonStyles.formWarning + " " + commonStyles.totalFormWarning}>{props.error}</span>}
     </form>
 }
 

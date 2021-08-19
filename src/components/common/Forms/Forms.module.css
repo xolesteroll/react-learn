@@ -1,6 +1,6 @@
 .formWrapper.error input,
 .formWrapper.error textarea{
-    border: 1px solid #f6a6a6;
+    border: 1px solid #db2938;
 }
 
 .formInner {
@@ -9,23 +9,31 @@
 
 .formWarning {
     position: absolute;
-    left: 0;
-    top: -35px;
+    right: 0;
+    top: 34px;
     padding: 2px 5px;
-    background-color: #f6a6a6;
+    background-color: #db2938;
     color: #000000;
     border-radius: 3px;
     font-size: 15px;
 }
 
-.formWarning::before{
-    content: "";
-    position: absolute;
-    bottom: 1px;
-    left: 15px;
-    border: 9px solid transparent;
-    border-top: 9px solid #f6a6a6;
-    transform: translateY(100%);
+.formWarning.totalFormWarning {
+    right: auto;
+    top: auto;
+    left: 20px;
+    bottom: 25px;
 }
+
+
+/*.formWarning::before{*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    bottom: 1px;*/
+/*    left: 15px;*/
+/*    border: 9px solid transparent;*/
+/*    border-top: 9px solid #db2938;*/
+/*    transform: translateY(100%);*/
+/*}*/
 
 
