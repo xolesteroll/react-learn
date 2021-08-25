@@ -8,7 +8,6 @@ export const required = (value) => {
 }
 
 export const maxLength = (maxLength) => (value) => {
-    console.log(value)
     if (value && value.length > maxLength) return `Max length is ${maxLength}`
 
     return undefined

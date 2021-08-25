@@ -1,8 +1,8 @@
 import {usersAPI} from "../../dal/api";
 
-const ADD_POST = 'ADD-POST'
-const SET_USER_PROFILE = 'SET_USER_PROFILE'
-const UPDATE_PROFILE_STATUS_TEXT = 'UPDATE_PROFILE_STATUS_TEXT'
+const ADD_POST = '/profile/ADD-POST'
+const SET_USER_PROFILE = '/profile/SET_USER_PROFILE'
+const UPDATE_PROFILE_STATUS_TEXT = '/profile/UPDATE_PROFILE_STATUS_TEXT'
 
 let initialState = {
     posts: [
@@ -47,7 +47,7 @@ const profileReducer = (state = initialState, action) => {
             return {...state, profile: action.profile}
         }
         case UPDATE_PROFILE_STATUS_TEXT : {
-            return {...state, status:  action.status}
+            return {...state, status: action.status}
         }
         default :
             return state
@@ -67,33 +67,25 @@ export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 
 export const updateProfileStatusText = (status) => ({type: UPDATE_PROFILE_STATUS_TEXT, status})
 
-export const getUserProfile = (userId) => (dispatch) => {
-
-    usersAPI.getUserProfile(userId)
-        .then(response => {
-            console.log(response)
-            dispatch(setUserProfile(response))
-        })
+export const getUserProfile = (userId) => async (dispatch) => {
+    const response = await usersAPI.getUserProfile(userId)
+    console.log(response)
+    dispatch(setUserProfile(response))
 }
 
-export const updateProfileStatus = (userId) => (dispatch) => {
+export const updateProfileStatus = (userId) => async (dispatch) => {
 
-    usersAPI.getProfileStatus(userId)
-        .then(response => {
-            dispatch(updateProfileStatusText(response.data))
-        })
+    const response = await usersAPI.getProfileStatus(userId)
+    dispatch(updateProfileStatusText(response.data))
 
 }
 
-export const postProfileStatus = (status) => (dispatch) => {
-    usersAPI.postProfileStatus(status)
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(updateProfileStatusText(status))
-            }
-        })
+export const postProfileStatus = (status) => async (dispatch) => {
+    const response = await usersAPI.postProfileStatus(status)
+    if (response.data.resultCode === 0) {
+        dispatch(updateProfileStatusText(status))
+    }
 }
-
 
 
 export default profileReducer

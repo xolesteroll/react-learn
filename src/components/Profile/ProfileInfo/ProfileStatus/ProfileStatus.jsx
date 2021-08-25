@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import classes from "./ProfileStatus.module.css";
 
-const ProfileStatus = (props) => {
+const ProfileStatus = props => {
+
 
     let [status, setStatus] = useState(props.status)
     let [editMode, setEditMode] = useState(false)
