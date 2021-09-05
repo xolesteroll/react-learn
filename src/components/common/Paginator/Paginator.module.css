@@ -2,6 +2,8 @@
 .pageNumWrapper {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px;
 }
 
 .pageNumWrapper span {
@@ -12,3 +14,15 @@
 .selectedPage {
     font-weight: bold;
 }
+
+.pageNumNavBtn {
+    padding: 5px 10px;
+    background-color: rgb(28, 81, 151);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+

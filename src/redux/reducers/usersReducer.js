@@ -3,7 +3,8 @@ import {actionMapHelper} from "../../utils/helpers";
 
 const FOLLOW = '/users/FOLLOW'
 const UNFOLLOW = '/users/UNFOLLOW'
-const SET_USERS = '/users/SET_USERS'
+const LOAD_MORE_USERS = '/users/LOAD_MORE_USERS'
+const SET_PAGE_USERS = '/users/SET_PAGE_USERS'
 const CHANGE_PAGE = '/users/CHANGE_PAGE'
 const SET_USERS_COUNT = '/users/SET_USERS_COUNT'
 const TOGGLE_IS_FETCHING = '/users/TOGGLE_IS_FETCHING'
@@ -31,8 +32,10 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: actionMapHelper(state.users, action.userId, "id", {followed: false})
             }
-        case SET_USERS :
+        case LOAD_MORE_USERS :
             return {...state, users: [...state.users, ...action.users]}
+        case SET_PAGE_USERS :
+            return {...state, users: [...action.users]}
         case CHANGE_PAGE :
             return {...state, currentPage: action.pageNumber}
         case SET_USERS_COUNT :
@@ -53,7 +56,8 @@ const usersReducer = (state = initialState, action) => {
 
 export const followSuccess = (userId) => ({type: FOLLOW, userId})
 export const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId})
-export const setUsers = (users) => ({type: SET_USERS, users})
+export const loadMoreUsers = (users) => ({type: LOAD_MORE_USERS, users})
+export const setPageUsers = (users) => ({type: SET_PAGE_USERS, users})
 export const changePage = (pageNumber) => ({type: CHANGE_PAGE, pageNumber})
 export const setTotalUsersCount = (totalCount) => ({type: SET_USERS_COUNT, totalCount})
 export const setIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
@@ -64,7 +68,17 @@ export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
 
     const response = await usersAPI.getUsers(currentPage, pageSize)
     dispatch(setIsFetching(false))
-    dispatch(setUsers(response.items))
+    dispatch(loadMoreUsers(response.items))
+    dispatch(setTotalUsersCount(response.totalCount))
+}
+
+
+export const setPageUsersAC = (currentPage, pageSize) => async (dispatch) => {
+    dispatch(setIsFetching(true))
+
+    const response = await usersAPI.getUsers(currentPage, pageSize)
+    dispatch(setIsFetching(false))
+    dispatch(setPageUsers(response.items))
     dispatch(setTotalUsersCount(response.totalCount))
 }
 

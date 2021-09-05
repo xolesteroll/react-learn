@@ -5,6 +5,7 @@ import User from "./User";
 const Users = (props) => {
 
     return <div className={classes.usersWrapper}>
+
         {
             props.users.map(u => <User user={u}
                                        followingInProgress={props.followingInProgress}

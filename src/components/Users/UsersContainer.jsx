@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import {
-    changePage, follow, requestUsers, unfollow
+    changePage, follow, requestUsers, setPageUsersAC, unfollow
 } from "../../redux/reducers/usersReducer";
 import React from "react";
 import Users from "./Users";
@@ -14,6 +14,7 @@ import {
     getTotalUsersCount,
     getUsers
 } from "../../redux/selectors/usersSelectors";
+import Paginator from "../common/Paginator/Paginator";
 
 class UsersContainer extends React.Component {
 
@@ -28,11 +29,23 @@ class UsersContainer extends React.Component {
         this.props.requestUsers(pageNumber, this.props.pageSize)
     }
 
+    onPageUsersChanged = (pageNumber) => {
+        this.props.changePage(pageNumber)
+        this.props.setPageUsersAC(pageNumber, this.props.pageSize)
+    }
+
     render() {
         return <>
             {this.props.isFetching ?
                 <Preloader/>
                 : null}
+            <Paginator
+                totalItemsCount={this.props.totalUsersCount}
+                pageSize={this.props.pageSize}
+                currentPage={this.props.currentPage}
+                portionSize={10}
+                onPageChanged={this.onPageUsersChanged}
+            />
             <Users onPageChanged={this.onPageChanged}
                    users={this.props.users}
                    currentPage={this.props.currentPage}
@@ -58,11 +71,11 @@ let mapStateToProps = (state) => {
 }
 
 
-
 export default compose(
     connect(mapStateToProps, {
         changePage,
         requestUsers,
+        setPageUsersAC,
         unfollow,
         follow
     }),
