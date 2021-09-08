@@ -2,18 +2,18 @@ import React, {useState} from 'react';
 import classes from "./Paginator.module.css";
 
 const Paginator = (props) => {
-    let pagesCount = Math.ceil(props.totalItemsCount / props.pageSize)
-    let portionCount = Math.ceil(pagesCount / props.portionSize)
-    let currentPage = props.currentPage
-    let currentPortionNumber = Math.ceil(currentPage / props.portionSize)
-    let [portionNumber, setPortionNumber] = useState(currentPortionNumber)
+    const pagesCount = Math.ceil(props.totalItemsCount / props.pageSize)
+    const portionCount = Math.ceil(pagesCount / props.portionSize)
+    const currentPage = props.currentPage
+    const currentPortionNumber = Math.ceil(currentPage / props.portionSize)
+    const [portionNumber, setPortionNumber] = useState(currentPortionNumber)
     const pages = []
     for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
+        pages.push(i)
     }
 
-    let leftPortionNumber = (portionNumber - 1) * props.portionSize + 1
-    let rightPortionNumber = portionNumber * props.portionSize
+    const leftPortionNumber = (portionNumber - 1) * props.portionSize + 1
+    const rightPortionNumber = portionNumber * props.portionSize
 
     const changePortion = (num, sign) => {
         let computedPortion
